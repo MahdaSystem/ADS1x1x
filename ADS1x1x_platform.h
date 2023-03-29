@@ -48,7 +48,7 @@ extern "C" {
  * @note   Uncomment the line below according to the target platform
  */ 
 // #define ADS1X1X_PLATFORM_STM32_HAL
-#define ADS1X1X_PLATFORM_ESP32_IDF
+// #define ADS1X1X_PLATFORM_ESP32_IDF
 // #define ADS1X1X_PLATFORM_AVR
 
 
