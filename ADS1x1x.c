@@ -192,12 +192,12 @@ ADS1x1x_Init(ADS1x1x_Handler_t *Handler, ADS1x1x_Device_t Device,
 
   if (!Handler->PlatformSend ||
       !Handler->PlatformReceive ||
-      (Handler->Device != ADS1X1X_DEVICE_ADS1013 &&
-       Handler->Device != ADS1X1X_DEVICE_ADS1014 &&
-       Handler->Device != ADS1X1X_DEVICE_ADS1015 &&
-       Handler->Device != ADS1X1X_DEVICE_ADS1113 &&
-       Handler->Device != ADS1X1X_DEVICE_ADS1114 &&
-       Handler->Device != ADS1X1X_DEVICE_ADS1115))
+      (Device != ADS1X1X_DEVICE_ADS1013 &&
+       Device != ADS1X1X_DEVICE_ADS1014 &&
+       Device != ADS1X1X_DEVICE_ADS1015 &&
+       Device != ADS1X1X_DEVICE_ADS1113 &&
+       Device != ADS1X1X_DEVICE_ADS1114 &&
+       Device != ADS1X1X_DEVICE_ADS1115))
     return ADS1X1X_INVALID_PARAM;
 
   Result = ADS1x1x_SetAddressI2C(Handler, Address);
