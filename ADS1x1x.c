@@ -215,7 +215,10 @@ ADS1x1x_Init(ADS1x1x_Handler_t *Handler, ADS1x1x_Device_t Device,
   Handler->Mode = ADS1X1X_MODE_SINGLESHOT;
 
   // Set default configuration
-  return ADS1x1x_WriteConfigurationRegister(Handler, 0x8583);
+  if (ADS1x1x_WriteConfigurationRegister(Handler, 0x8583) < 0)
+    return ADS1X1X_FAIL;
+
+  return ADS1X1X_OK;
 }
 
 /**
