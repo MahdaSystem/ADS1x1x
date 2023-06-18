@@ -523,11 +523,8 @@ ADS1x1x_CheckDataReady(ADS1x1x_Handler_t *Handler)
 ADS1x1x_Result_t
 ADS1x1x_ReadSample(ADS1x1x_Handler_t *Handler, ADS1x1x_Sample_t *Sample)
 {
-  ADS1x1x_Result_t Result = ADS1X1X_OK;
-
-  Result = ADS1x1x_ReadConversionRegister(Handler, (uint16_t *) &(Sample->Raw));
-  if (Result != ADS1X1X_OK)
-    return Result;
+  if (ADS1x1x_ReadConversionRegister(Handler, (uint16_t *) &(Sample->Raw)) < 0)
+    return ADS1X1X_FAIL;
 
   ADS1x1x_ConvSample(Handler, Sample);
 
