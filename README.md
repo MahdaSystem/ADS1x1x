@@ -40,7 +40,7 @@ int main(void)
     ADS1x1x_StartConversion(&Handler);
     while (ADS1x1x_CheckDataReady(&Handler) == ADS1X1X_DATA_NOT_READY);
     ADS1x1x_ReadSample(&Handler, &Sample);
-    printf("Voltage: %fLux\r\n\r\n",
+    printf("Voltage: %fV\r\n\r\n",
            Sample.Voltage);
   }
 
@@ -161,7 +161,7 @@ int main(void)
     ADS1x1x_StartConversion(&Handler);
     while (ADS1x1x_CheckDataReady(&Handler) == ADS1X1X_DATA_NOT_READY);
     ADS1x1x_ReadSample(&Handler, &Sample);
-    printf("Voltage: %fLux\r\n\r\n",
+    printf("Voltage: %fV\r\n\r\n",
            Sample.Voltage);
   }
 
