@@ -119,6 +119,43 @@ typedef enum ADS1x1x_Rate_e
   ADS1X1X_RATE_860SPS = 7
 } ADS1x1x_Rate_t;
 
+/**
+ * @brief  Comparator mode
+ */
+typedef enum ADS1x1x_CompMode_e
+{
+  ADS1X1X_COMP_MODE_TRADITIONAL = 0,
+  ADS1X1X_COMP_MODE_WINDOW      = 1
+} ADS1x1x_CompMode_t;
+
+/**
+ * @brief  Comparator polarity
+ */
+typedef enum ADS1x1x_CompPol_e
+{
+  ADS1X1X_COMP_POL_LOW  = 0,
+  ADS1X1X_COMP_POL_HIGH = 1
+} ADS1x1x_CompPol_t;
+
+/**
+ * @brief  Comparator latch
+ */
+typedef enum ADS1x1x_CompLat_e
+{
+  ADS1X1X_COMP_LAT_NON_LATCHING = 0,
+  ADS1X1X_COMP_LAT_LATCHING     = 1
+} ADS1x1x_CompLat_t;
+
+/**
+ * @brief  Comparator queue
+ */
+typedef enum ADS1x1x_CompQue_e
+{
+  ADS1X1X_COMP_QUE_ASSERT_1 = 0,
+  ADS1X1X_COMP_QUE_ASSERT_2 = 1,
+  ADS1X1X_COMP_QUE_ASSERT_4 = 2,
+  ADS1X1X_COMP_QUE_DISABLE  = 3
+} ADS1x1x_CompQue_t;
 
 
 /**
@@ -307,6 +344,84 @@ ADS1x1x_SetRate(ADS1x1x_Handler_t *Handler, ADS1x1x_Rate_t Rate);
  */
 ADS1x1x_Result_t
 ADS1x1x_SetMux(ADS1x1x_Handler_t *Handler, ADS1x1x_Mux_t Mux);
+
+
+/**
+ * @brief  Set Comparator mode
+ * @param  Handler: Pointer to handler
+ * @param  CompMode: Specify Comparator mode
+ * @retval ADS1x1x_Result_t
+ *         - ADS1X1X_OK: Operation was successful.
+ *         - ADS1X1X_FAIL: Failed to send or receive data.
+ *         - ADS1X1X_INVALID_PARAM: One of parameters is invalid.
+ */
+ADS1x1x_Result_t
+ADS1x1x_SetCompMode(ADS1x1x_Handler_t *Handler, ADS1x1x_CompMode_t CompMode);
+
+
+/**
+ * @brief  Set Comparator polarity
+ * @param  Handler: Pointer to handler
+ * @param  CompPol: Specify Comparator polarity
+ * @retval ADS1x1x_Result_t
+ *         - ADS1X1X_OK: Operation was successful.
+ *         - ADS1X1X_FAIL: Failed to send or receive data.
+ *         - ADS1X1X_INVALID_PARAM: One of parameters is invalid.
+ */
+ADS1x1x_Result_t
+ADS1x1x_SetCompPol(ADS1x1x_Handler_t *Handler, ADS1x1x_CompPol_t CompPol);
+
+
+/**
+ * @brief  Set Comparator latch
+ * @param  Handler: Pointer to handler
+ * @param  CompLat: Specify Comparator latch
+ * @retval ADS1x1x_Result_t
+ *         - ADS1X1X_OK: Operation was successful.
+ *         - ADS1X1X_FAIL: Failed to send or receive data.
+ *         - ADS1X1X_INVALID_PARAM: One of parameters is invalid.
+ */
+ADS1x1x_Result_t
+ADS1x1x_SetCompLat(ADS1x1x_Handler_t *Handler, ADS1x1x_CompLat_t CompLat);
+
+
+/**
+ * @brief  Set Comparator queue
+ * @param  Handler: Pointer to handler
+ * @param  CompQue: Specify Comparator queue
+ * @retval ADS1x1x_Result_t
+ *         - ADS1X1X_OK: Operation was successful.
+ *         - ADS1X1X_FAIL: Failed to send or receive data.
+ *         - ADS1X1X_INVALID_PARAM: One of parameters is invalid.
+ */
+ADS1x1x_Result_t
+ADS1x1x_SetCompQue(ADS1x1x_Handler_t *Handler, ADS1x1x_CompQue_t CompQue);
+
+
+/**
+ * @brief  Set Lo-Threshold
+ * @param  Handler: Pointer to handler
+ * @param  Threshold: Specify Lo-Threshold
+ * @retval ADS1x1x_Result_t
+ *         - ADS1X1X_OK: Operation was successful.
+ *         - ADS1X1X_FAIL: Failed to send or receive data.
+ *         - ADS1X1X_INVALID_PARAM: One of parameters is invalid.
+ */
+ADS1x1x_Result_t
+ADS1x1x_SetLoThresh(ADS1x1x_Handler_t *Handler, int16_t Threshold);
+
+
+/**
+ * @brief  Set Hi-Threshold
+ * @param  Handler: Pointer to handler
+ * @param  Threshold: Specify Hi-Threshold
+ * @retval ADS1x1x_Result_t
+ *         - ADS1X1X_OK: Operation was successful.
+ *         - ADS1X1X_FAIL: Failed to send or receive data.
+ *         - ADS1X1X_INVALID_PARAM: One of parameters is invalid.
+ */
+ADS1x1x_Result_t
+ADS1x1x_SetHiThresh(ADS1x1x_Handler_t *Handler, int16_t Threshold);
 
 
 /**

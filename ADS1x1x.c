@@ -455,7 +455,208 @@ ADS1x1x_SetMux(ADS1x1x_Handler_t *Handler, ADS1x1x_Mux_t Mux)
   if (ADS1x1x_WriteConfigurationRegister(Handler, ConfigReg) < 0)
     return ADS1X1X_FAIL;
 
+  return ADS1X1X_OK;
+}
+
+/**
+ * @brief  Set Comparator mode
+ * @param  Handler: Pointer to handler
+ * @param  CompMode: Specify Comparator mode
+ * @retval ADS1x1x_Result_t
+ *         - ADS1X1X_OK: Operation was successful.
+ *         - ADS1X1X_FAIL: Failed to send or receive data.
+ *         - ADS1X1X_INVALID_PARAM: One of parameters is invalid.
+ */
+ADS1x1x_Result_t
+ADS1x1x_SetCompMode(ADS1x1x_Handler_t *Handler, ADS1x1x_CompMode_t CompMode)
+{
+  uint16_t ConfigReg = 0;
+
   if (ADS1x1x_ReadConfigurationRegister(Handler, &ConfigReg) < 0)
+    return ADS1X1X_FAIL;
+
+  ConfigReg &= ~(1 << ADS1X1X_CONFIG_REG_OS);
+  switch (CompMode)
+  {
+  case ADS1X1X_COMP_MODE_TRADITIONAL:
+    ConfigReg &= ~(1 << ADS1X1X_CONFIG_REG_COMP_MODE);
+    break;
+
+  case ADS1X1X_COMP_MODE_WINDOW:
+    ConfigReg |= (1 << ADS1X1X_CONFIG_REG_COMP_MODE);
+    break;
+
+  default:
+    return ADS1X1X_INVALID_PARAM;
+    break;
+  }
+
+  if (ADS1x1x_WriteConfigurationRegister(Handler, ConfigReg) < 0)
+    return ADS1X1X_FAIL;
+
+  return ADS1X1X_OK;
+}
+
+/**
+ * @brief  Set Comparator polarity
+ * @param  Handler: Pointer to handler
+ * @param  CompPol: Specify Comparator polarity
+ * @retval ADS1x1x_Result_t
+ *         - ADS1X1X_OK: Operation was successful.
+ *         - ADS1X1X_FAIL: Failed to send or receive data.
+ *         - ADS1X1X_INVALID_PARAM: One of parameters is invalid.
+ */
+ADS1x1x_Result_t
+ADS1x1x_SetCompPol(ADS1x1x_Handler_t *Handler, ADS1x1x_CompPol_t CompPol)
+{
+  uint16_t ConfigReg = 0;
+
+  if (ADS1x1x_ReadConfigurationRegister(Handler, &ConfigReg) < 0)
+    return ADS1X1X_FAIL;
+
+  ConfigReg &= ~(1 << ADS1X1X_CONFIG_REG_OS);
+  switch (CompPol)
+  {
+  case ADS1X1X_COMP_POL_LOW:
+    ConfigReg &= ~(1 << ADS1X1X_CONFIG_REG_COMP_POL);
+    break;
+
+  case ADS1X1X_COMP_POL_HIGH:
+    ConfigReg |= (1 << ADS1X1X_CONFIG_REG_COMP_POL);
+    break;
+
+  default:
+    return ADS1X1X_INVALID_PARAM;
+    break;
+  }
+
+  if (ADS1x1x_WriteConfigurationRegister(Handler, ConfigReg) < 0)
+    return ADS1X1X_FAIL;
+
+  return ADS1X1X_OK;
+}
+
+/**
+ * @brief  Set Comparator latch
+ * @param  Handler: Pointer to handler
+ * @param  CompLat: Specify Comparator latch
+ * @retval ADS1x1x_Result_t
+ *         - ADS1X1X_OK: Operation was successful.
+ *         - ADS1X1X_FAIL: Failed to send or receive data.
+ *         - ADS1X1X_INVALID_PARAM: One of parameters is invalid.
+ */
+ADS1x1x_Result_t
+ADS1x1x_SetCompLat(ADS1x1x_Handler_t *Handler, ADS1x1x_CompLat_t CompLat)
+{
+  uint16_t ConfigReg = 0;
+
+  if (ADS1x1x_ReadConfigurationRegister(Handler, &ConfigReg) < 0)
+    return ADS1X1X_FAIL;
+
+  ConfigReg &= ~(1 << ADS1X1X_CONFIG_REG_OS);
+  switch (CompLat)
+  {
+  case ADS1X1X_COMP_LAT_NON_LATCHING:
+    ConfigReg &= ~(1 << ADS1X1X_CONFIG_REG_COMP_LAT);
+    break;
+
+  case ADS1X1X_COMP_LAT_LATCHING:
+    ConfigReg |= (1 << ADS1X1X_CONFIG_REG_COMP_LAT);
+    break;
+
+  default:
+    return ADS1X1X_INVALID_PARAM;
+    break;
+  }
+
+  if (ADS1x1x_WriteConfigurationRegister(Handler, ConfigReg) < 0)
+    return ADS1X1X_FAIL;
+
+  return ADS1X1X_OK;
+}
+
+/**
+ * @brief  Set Comparator queue
+ * @param  Handler: Pointer to handler
+ * @param  CompQue: Specify Comparator queue
+ * @retval ADS1x1x_Result_t
+ *         - ADS1X1X_OK: Operation was successful.
+ *         - ADS1X1X_FAIL: Failed to send or receive data.
+ *         - ADS1X1X_INVALID_PARAM: One of parameters is invalid.
+ */
+ADS1x1x_Result_t
+ADS1x1x_SetCompQue(ADS1x1x_Handler_t *Handler, ADS1x1x_CompQue_t CompQue)
+{
+  uint16_t ConfigReg = 0;
+
+  if (ADS1x1x_ReadConfigurationRegister(Handler, &ConfigReg) < 0)
+    return ADS1X1X_FAIL;
+
+  ConfigReg &= ~(1 << ADS1X1X_CONFIG_REG_OS);
+  switch (CompQue)
+  {
+  case ADS1X1X_COMP_QUE_ASSERT_1:
+    ConfigReg &= ~(1 << ADS1X1X_CONFIG_REG_COMP_QUE1);
+    ConfigReg &= ~(1 << ADS1X1X_CONFIG_REG_COMP_QUE0);
+    break;
+
+  case ADS1X1X_COMP_QUE_ASSERT_2:
+    ConfigReg &= ~(1 << ADS1X1X_CONFIG_REG_COMP_QUE1);
+    ConfigReg |=  (1 << ADS1X1X_CONFIG_REG_COMP_QUE0);
+    break;
+
+  case ADS1X1X_COMP_QUE_ASSERT_4:
+    ConfigReg |=  (1 << ADS1X1X_CONFIG_REG_COMP_QUE1);
+    ConfigReg &= ~(1 << ADS1X1X_CONFIG_REG_COMP_QUE0);
+    break;
+
+  case ADS1X1X_COMP_QUE_DISABLE:
+    ConfigReg |=  (1 << ADS1X1X_CONFIG_REG_COMP_QUE1);
+    ConfigReg |=  (1 << ADS1X1X_CONFIG_REG_COMP_QUE0);
+    break;
+
+  default:
+    return ADS1X1X_INVALID_PARAM;
+    break;
+  }
+
+  if (ADS1x1x_WriteConfigurationRegister(Handler, ConfigReg) < 0)
+    return ADS1X1X_FAIL;
+
+  return ADS1X1X_OK;
+}
+
+/**
+ * @brief  Set Lo-Threshold
+ * @param  Handler: Pointer to handler
+ * @param  Threshold: Specify Lo-Threshold
+ * @retval ADS1x1x_Result_t
+ *         - ADS1X1X_OK: Operation was successful.
+ *         - ADS1X1X_FAIL: Failed to send or receive data.
+ *         - ADS1X1X_INVALID_PARAM: One of parameters is invalid.
+ */
+ADS1x1x_Result_t
+ADS1x1x_SetLoThresh(ADS1x1x_Handler_t *Handler, int16_t Threshold)
+{
+  if (ADS1x1x_WriteReg(Handler, ADS1X1X_REG_ADDR_LO_THRESH, (uint16_t)Threshold) < 0)
+    return ADS1X1X_FAIL;
+
+  return ADS1X1X_OK;
+}
+
+/**
+ * @brief  Set Hi-Threshold
+ * @param  Handler: Pointer to handler
+ * @param  Threshold: Specify Hi-Threshold
+ * @retval ADS1x1x_Result_t
+ *         - ADS1X1X_OK: Operation was successful.
+ *         - ADS1X1X_FAIL: Failed to send or receive data.
+ *         - ADS1X1X_INVALID_PARAM: One of parameters is invalid.
+ */
+ADS1x1x_Result_t
+ADS1x1x_SetHiThresh(ADS1x1x_Handler_t *Handler, int16_t Threshold)
+{
+  if (ADS1x1x_WriteReg(Handler, ADS1X1X_REG_ADDR_HI_THRESH, (uint16_t)Threshold) < 0)
     return ADS1X1X_FAIL;
 
   return ADS1X1X_OK;
