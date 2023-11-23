@@ -108,7 +108,7 @@ ADS1x1x_Platform_Send(uint8_t Address, uint8_t *Data, uint8_t DataLen)
   i2c_master_write(ADS1x1x_i2c_cmd_handle, &Address, 1, 1);
   i2c_master_write(ADS1x1x_i2c_cmd_handle, Data, DataLen, 1);
   i2c_master_stop(ADS1x1x_i2c_cmd_handle);
-  if (i2c_master_cmd_begin(ADS1X1X_I2C_NUM, ADS1x1x_i2c_cmd_handle, 1000 / portTICK_RATE_MS) != ESP_OK)
+  if (i2c_master_cmd_begin(ADS1X1X_I2C_NUM, ADS1x1x_i2c_cmd_handle, 1000 / portTICK_PERIOD_MS) != ESP_OK)
   {
     i2c_cmd_link_delete(ADS1x1x_i2c_cmd_handle);
     return -1;
@@ -129,7 +129,7 @@ ADS1x1x_Platform_Receive(uint8_t Address, uint8_t *Data, uint8_t DataLen)
   i2c_master_write(ADS1x1x_i2c_cmd_handle, &Address, 1, 1);
   i2c_master_read(ADS1x1x_i2c_cmd_handle, Data, DataLen, I2C_MASTER_LAST_NACK);
   i2c_master_stop(ADS1x1x_i2c_cmd_handle);
-  if (i2c_master_cmd_begin(ADS1X1X_I2C_NUM, ADS1x1x_i2c_cmd_handle, 1000 / portTICK_RATE_MS) != ESP_OK)
+  if (i2c_master_cmd_begin(ADS1X1X_I2C_NUM, ADS1x1x_i2c_cmd_handle, 1000 / portTICK_PERIOD_MS) != ESP_OK)
   {
     i2c_cmd_link_delete(ADS1x1x_i2c_cmd_handle);
     return -1;
