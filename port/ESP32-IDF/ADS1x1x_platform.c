@@ -31,8 +31,10 @@
 
 /* Includes ---------------------------------------------------------------------*/
 #include "ADS1x1x_platform.h"
-#include <avr/io.h>
-#include <util/delay.h>
+#include "sdkconfig.h"
+#include "esp_system.h"
+#include "driver/i2c.h"
+#include "freertos/FreeRTOS.h"
 
 
 
