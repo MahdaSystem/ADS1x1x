@@ -267,7 +267,7 @@ ADS1x1x_DeInit(ADS1x1x_Handler_t *Handler);
  *         - 2: This address used when ADDR is connected SDA
  *         - 3: This address used when ADDR is connected SCL
  * 
- * @retval SHT3x_Result_t
+ * @retval ADS1x1x_Result_t
  *         - ADS1X1X_OK: Operation was successful.
  *         - ADS1X1X_INVALID_PARAM: One of parameters is invalid.
  */
