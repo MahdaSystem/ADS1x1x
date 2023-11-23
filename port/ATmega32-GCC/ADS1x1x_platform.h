@@ -43,26 +43,7 @@ extern "C" {
 
 
 /* Functionality Options --------------------------------------------------------*/
-/**
- * @brief  Specify the target platform
- * @note   Uncomment the line below according to the target platform
- */ 
-// #define ADS1X1X_PLATFORM_STM32_HAL
-// #define ADS1X1X_PLATFORM_ESP32_IDF
-// #define ADS1X1X_PLATFORM_AVR
-
-
-#if defined(ADS1X1X_PLATFORM_STM32_HAL)
-#define ADS1X1X_HI2C      hi2c2
-#elif defined(ADS1X1X_PLATFORM_ESP32_IDF)
-#define ADS1X1X_I2C_NUM   I2C_NUM_0
 #define ADS1X1X_I2C_RATE  100000
-#define ADS1X1X_SCL_GPIO  GPIO_NUM_27
-#define ADS1X1X_SDA_GPIO  GPIO_NUM_33
-#elif defined(ADS1X1X_PLATFORM_AVR)
-#define ADS1X1X_CPU_CLK   8000000UL
-#define ADS1X1X_I2C_RATE  100000
-#endif
 
 
 
@@ -72,6 +53,11 @@ extern "C" {
  ==================================================================================
  */
 
+/**
+ * @brief  Initialize platform device to communicate ADS1x1x.
+ * @param  Handler: Pointer to handler
+ * @retval None
+ */
 void
 ADS1x1x_Platform_Init(ADS1x1x_Handler_t *Handler);
 
